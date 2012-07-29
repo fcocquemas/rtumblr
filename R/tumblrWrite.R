@@ -46,7 +46,7 @@ tumblrWrite <- function(url, user, post,
     
   # Build the list of parameters
   params <- c(user, post, generator=generator, date=date, 
-              private=ifelse(private, 1, 0), tags=tags, format=format, 
+              private=ifelse(private, 1, 0), tags=paste(tags, sep=","), format=format, 
               group=url, slug=slug, state=state, 
               "publish-on"=publish_on, "send-to-twitter"=send_to_twitter,
               "post-id"=post_id)
