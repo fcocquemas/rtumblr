@@ -1,0 +1,5 @@
+export(tumblrAuthenticate)
+export(tumblrRead)
+export(tumblrWrite)
+import(RCurl)
+import(XML)
