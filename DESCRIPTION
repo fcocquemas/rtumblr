@@ -1,6 +1,6 @@
 Package: RTumblr
 Type: Package
-Title: A R interface for the Tumblr API
+Title: A R interface for the Tumblr API v1
 Version: 0.1
 Date: 2012-07-27
 Author: François Cocquemas
