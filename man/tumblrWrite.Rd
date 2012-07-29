@@ -6,7 +6,7 @@
     date = NULL, private = FALSE, tags = NULL,
     format = NULL, slug = NULL, state = "published",
     publish_on = NULL, send_to_twitter = NULL,
-    post_id = NULL)
+    post_id = NULL, verbose = FALSE)
 }
 \arguments{
   \item{url}{domain of the tumblog to post to, NULL for
@@ -50,6 +50,9 @@
 
   \item{post_id}{for edits, id of the post to modify,
   defaults to NULL.}
+
+  \item{verbose}{boolean for more verbosity, passed to
+  RCurl}
 }
 \value{
   if successful, the new post id, error messages otherwise
@@ -60,12 +63,12 @@
 }
 \examples{
 url <- "(YOU).tumblr.com"
-user <- list(email="XXXXXXXX", password="XXXXXX")
-regular_post <- list(type="regular", title="Lorem ipsum",
-                     body="**Hello** _world_")
+user <- list(email = "XXXXXXXX", password = "XXXXXX")
+regular_post <- list(type = "regular", title = "Lorem ipsum",
+                     body = "**Hello** _world_")
 tumblrWrite(url, user, regular_post)
-tumblrWrite(url, user, regular_post, state="draft", send_to_twitter="no")
-tumblrWrite(url, user, regular_post, send_to_twitter="no",
-            date="2012-07-01 14:50:04")
+tumblrWrite(url, user, regular_post, state = "draft", send_to_twitter = "no")
+tumblrWrite(url, user, regular_post, send_to_twitter = "no",
+            date = "2012-07-01 14:50:04")
 }
 

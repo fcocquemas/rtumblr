@@ -5,7 +5,7 @@
   tumblrRead(url, start = NULL, num = NULL, type = NULL,
     id = NULL, filter = NULL, tagged = NULL,
     chrono = FALSE, search = NULL, user = NULL,
-    state = NULL)
+    state = NULL, verbose = FALSE)
 }
 \arguments{
   \item{url}{URL of the tumblog to read, without "http://"
@@ -41,6 +41,9 @@
 
   \item{state}{"draft", "queue", "submission" posts,
   requires user to be set (defaults to NULL).}
+
+  \item{verbose}{boolean for more verbosity, passed to
+  RCurl}
 }
 \value{
   list of posts matching the request.
@@ -51,12 +54,12 @@
 \examples{
 url <- "demo.tumblr.com"
 tumblrRead(url)
-tumblrRead(url, start=2, num=1)
-tumblrRead(url, id=459009076)
-tumblrRead(url, tagged="funny", filter="none")
+tumblrRead(url, start = 2, num = 1)
+tumblrRead(url, id = 459009076)
+tumblrRead(url, tagged = "funny", filter = "none")
 
 url2 <- "(YOU).tumblr.com"
-user <- list(email="XXXXXXXX", password="XXXXXX")
-tumblrRead(url2, user=user, state="draft")
+user <- list(email = "XXXXXXXX", password = "XXXXXX")
+tumblrRead(url2, user = user, state = "draft")
 }
 

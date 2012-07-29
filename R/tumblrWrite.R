@@ -29,29 +29,30 @@
 #' @return if successful, the new post id, error messages otherwise
 #' @examples
 #' url <- "(YOU).tumblr.com"
-#' user <- list(email="XXXXXXXX", password="XXXXXX")
-#' regular_post <- list(type="regular", title="Lorem ipsum",
-#'                      body="**Hello** _world_")
+#' user <- list(email = "XXXXXXXX", password = "XXXXXX")
+#' regular_post <- list(type = "regular", title = "Lorem ipsum",
+#'                      body = "**Hello** _world_")
 #' tumblrWrite(url, user, regular_post)
-#' tumblrWrite(url, user, regular_post, state="draft", send_to_twitter="no") 
-#' tumblrWrite(url, user, regular_post, send_to_twitter="no",
-#'             date="2012-07-01 14:50:04")
+#' tumblrWrite(url, user, regular_post, state = "draft", send_to_twitter = "no") 
+#' tumblrWrite(url, user, regular_post, send_to_twitter = "no",
+#'             date = "2012-07-01 14:50:04")
 #' 
 tumblrWrite <- function(url, user, post,
-                        generator="RTumblr", date=NULL, private=FALSE,
-                        tags=NULL, format=NULL, slug=NULL,
-                        state="published", publish_on=NULL,
-                        send_to_twitter=NULL, post_id=NULL,
+                        generator = "RTumblr", date = NULL, private = FALSE,
+                        tags = NULL, format = NULL, slug = NULL,
+                        state = "published", publish_on = NULL,
+                        send_to_twitter = NULL, post_id = NULL,
                         verbose = FALSE) {
   # The URL to send the request to
   req_url <- "https://www.tumblr.com/api/write"
     
   # Build the list of parameters
-  params <- c(user, post, generator=generator, date=date, 
-              private=ifelse(private, 1, 0), tags=paste(tags, sep=","), format=format, 
-              group=url, slug=slug, state=state, 
-              "publish-on"=publish_on, "send-to-twitter"=send_to_twitter,
-              "post-id"=post_id)
+  params <- c(user, post, generator = generator, date = date, 
+              private = ifelse(private, 1, 0), 
+              tags = paste(tags, sep=","), format = format, 
+              group = url, slug = slug, state = state, 
+              "publish-on" = publish_on, "send-to-twitter" = send_to_twitter,
+              "post-id" = post_id)
   
   # Convert the parameters to the HTTP POST format
   params <- listToParams(params)
@@ -59,7 +60,7 @@ tumblrWrite <- function(url, user, post,
   
   # Send the API request (POST)  
   req <- getURL(req_url,
-                postfields=params,
+                postfields = params,
                 verbose = verbose)  
   req
 }

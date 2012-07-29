@@ -23,26 +23,26 @@
 #' @examples
 #' url <- "demo.tumblr.com"
 #' tumblrRead(url)
-#' tumblrRead(url, start=2, num=1)
-#' tumblrRead(url, id=459009076)
-#' tumblrRead(url, tagged="funny", filter="none")
+#' tumblrRead(url, start = 2, num = 1)
+#' tumblrRead(url, id = 459009076)
+#' tumblrRead(url, tagged = "funny", filter = "none")
 #' 
 #' url2 <- "(YOU).tumblr.com"
-#' user <- list(email="XXXXXXXX", password="XXXXXX")
-#' tumblrRead(url2, user=user, state="draft")
+#' user <- list(email = "XXXXXXXX", password = "XXXXXX")
+#' tumblrRead(url2, user = user, state = "draft")
 tumblrRead <- function(url,
-                       start=NULL, num=NULL, type=NULL, id=NULL,
-                       filter=NULL, tagged=NULL, chrono=FALSE, search=NULL,
-                       user=NULL, state=NULL, verbose=FALSE) {
+                       start = NULL, num = NULL, type = NULL, id = NULL,
+                       filter = NULL, tagged = NULL, chrono = FALSE, search = NULL,
+                       user = NULL, state = NULL, verbose = FALSE) {
   # The URL to send the request to
-  if(url=="dashboard") {
+  if(url == "dashboard") {
     url <- "https://www.tumblr.com/api/dashboard"
-  } else url <- paste("http://", url, "/api/read", sep="")
+  } else url <- paste("http://", url, "/api/read", sep = "")
   
   # Build the list of parameters
-  params <- list(start=start, num=num, type=type, id=id,
-                 filter=filter, tagged=tagged,
-                 search=search, user=user, state=state)
+  params <- list(start = start, num = num, type = type, id = id,
+                 filter = filter, tagged = tagged,
+                 search = search, user = user, state = state)
   if(!is.null(tagged) & chrono) params$chrono <- 1
   
   # Convert the parameters to the HTTP GET format
@@ -50,15 +50,15 @@ tumblrRead <- function(url,
   if(verbose) print(params)
   
   # Send the API request (POST/GET)
-  url <- paste(url, "?", params, sep="")
+  url <- paste(url, "?", params, sep = "")
   if(exists("post_params")) {
     req <- getURL(url,  
-                  httpheader=c(Accept="text/xml", Accept="multipart/*"),
-                  postfields=post_params,
+                  httpheader = c(Accept = "text/xml", Accept = "multipart/*"),
+                  postfields = post_params,
                   verbose = FALSE)
   } else {
     req <- getURL(url,  
-                  httpheader=c(Accept="text/xml", Accept="multipart/*"),
+                  httpheader = c(Accept = "text/xml", Accept = "multipart/*"),
                   verbose = verbose)
   }
   
