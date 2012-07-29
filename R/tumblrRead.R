@@ -18,6 +18,7 @@
 #'   (defaults to NULL).
 #' @param state "draft", "queue", "submission" posts, requires user to be set 
 #'   (defaults to NULL).
+#' @param verbose boolean for more verbosity, passed to RCurl
 #' @return list of posts matching the request.
 #' @examples
 #' url <- "demo.tumblr.com"
@@ -32,7 +33,7 @@
 tumblrRead <- function(url,
                        start=NULL, num=NULL, type=NULL, id=NULL,
                        filter=NULL, tagged=NULL, chrono=FALSE, search=NULL,
-                       user=NULL, state=NULL) {
+                       user=NULL, state=NULL, verbose=FALSE) {
   # The URL to send the request to
   if(url=="dashboard") {
     url <- "https://www.tumblr.com/api/dashboard"
@@ -46,6 +47,7 @@ tumblrRead <- function(url,
   
   # Convert the parameters to the HTTP GET format
   params <- listToParams(params)
+  if(verbose) print(params)
   
   # Send the API request (POST/GET)
   url <- paste(url, "?", params, sep="")
@@ -57,7 +59,7 @@ tumblrRead <- function(url,
   } else {
     req <- getURL(url,  
                   httpheader=c(Accept="text/xml", Accept="multipart/*"),
-                  verbose = FALSE)
+                  verbose = verbose)
   }
   
   # Parse the returned XML to a list

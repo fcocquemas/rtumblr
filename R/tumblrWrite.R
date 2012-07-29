@@ -25,6 +25,7 @@
 #'   another message to send to Twitter. Defaults to NULL, which will follow
 #'   tbe "twitter-enabled" value for this blog.
 #' @param post_id for edits, id of the post to modify, defaults to NULL.
+#' @param verbose boolean for more verbosity, passed to RCurl
 #' @return if successful, the new post id, error messages otherwise
 #' @examples
 #' url <- "(YOU).tumblr.com"
@@ -40,7 +41,8 @@ tumblrWrite <- function(url, user, post,
                         generator="RTumblr", date=NULL, private=FALSE,
                         tags=NULL, format=NULL, slug=NULL,
                         state="published", publish_on=NULL,
-                        send_to_twitter=NULL, post_id=NULL) {
+                        send_to_twitter=NULL, post_id=NULL,
+                        verbose = FALSE) {
   # The URL to send the request to
   req_url <- "https://www.tumblr.com/api/write"
     
@@ -53,10 +55,11 @@ tumblrWrite <- function(url, user, post,
   
   # Convert the parameters to the HTTP POST format
   params <- listToParams(params)
-  print(params)
+  if(verbose) print(params)
+  
   # Send the API request (POST)  
   req <- getURL(req_url,
                 postfields=params,
-                verbose = TRUE)  
+                verbose = verbose)  
   req
 }
