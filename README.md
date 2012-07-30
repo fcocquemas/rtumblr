@@ -67,5 +67,5 @@ Posting successfully will return a post ID, which you can reuse (in a `post_id=`
 
 ## Licence
 
-RDatastream is released under the MIT licence.
+RTumblr is released under the MIT licence.
 
