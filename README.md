@@ -1,5 +1,11 @@
 # RTumblr
 
+## UPDATE COMING SOON!
+
+(October 2012) Tumblr has deprecated its v1 API, so that only reading functions now work in RTumblr. I'm currently looking at how to best implement the new OAuth API.
+
+--
+
 RTumblr is a R interface to the [Tumblr API v1](http://www.tumblr.com/docs/en/api/). It can be used to read and write tumblogs directly from R.
 
 The main goal is to facilitate technical/R blogging directly from your R IDE. The end-to-end solution for this is not quite there yet.
